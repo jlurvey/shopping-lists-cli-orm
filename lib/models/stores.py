@@ -56,3 +56,12 @@ class Store:
         """
         CURSOR.execute(sql)
         CONN.commit()
+
+    @classmethod
+    def drop_table(cls):
+        """Drop the table that persists Store instances"""
+        sql = """
+            DROP TABLE IF EXISTS stores;
+        """
+        CURSOR.execute(sql)
+        CONN.commit()        
