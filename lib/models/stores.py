@@ -76,4 +76,14 @@ class Store:
         """
 
         CURSOR.execute(sql, (self.name, self.category))
-        CONN.commit()        
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
+
+    @classmethod
+    def create(cls, name, category):
+        """Initialize a new Store instance and save the object to the database"""
+        store = cls(name, category)
+        store.save()
+        return store                
