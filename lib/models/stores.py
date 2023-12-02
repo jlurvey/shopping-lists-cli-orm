@@ -113,4 +113,22 @@ class Store:
 
         # Delete dicitionary and set id to none
         del type(self).all[self.id]
-        self.id = None                            
+        self.id = None
+
+    @classmethod
+    def instance_from_db(cls, row):
+        """Return Store object having the attribute values from the table row."""
+
+        # Check dictionary for an existing instance using the row's primary key
+        store = cls.all.get(row[0])
+        if store:
+            # ensure attributes match row values in case local instance was modified
+            store.name = row[1]
+            store.category = row[2]
+        else:
+            # not in dictionary, create new instance and add
+            store = cls(row[1], row[2])
+            store.id = row [0]
+            cls.all[store.id] = store
+        return store
+    
