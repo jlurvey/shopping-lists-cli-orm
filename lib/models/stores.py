@@ -17,5 +17,16 @@ class Store:
     def __repr__(self):
         return f"<Store {self.id}: {self.name}, {type}>"
     
+    # Name property decorator
+    @property
+    def name(self):
+        return self._name
     
-
+    @name.setter
+    def name(self, name):
+        if isinstance(name, str) and len(name):
+            self._name = name[0] + name[1:]
+        else:
+            raise ValueError(
+                "Name must be a non-empty string"
+            )
