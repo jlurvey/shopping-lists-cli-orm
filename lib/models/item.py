@@ -2,7 +2,7 @@
 from models.__init__ import CURSOR, CONN
 from models.store import Store
 
-class Store:
+class Item:
 
     #Dictionary of objects saved to the database
     all = {}

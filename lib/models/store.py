@@ -167,3 +167,15 @@ class Store:
 
         row = CURSOR.execute(sql, (name,)).fetchone()
         return cls.instance_from_db(row) if row else None
+    
+    def items(self):
+        """Return list of items associated with current store"""
+        from models.item import Item
+        sql = """
+            SELECT * FROM items
+            WHERE store_id = ?
+        """
+        CURSOR.execute(sql, (self.id),)
+
+        rows =CURSOR.fetchall()
+        return [Item.instance_from_db(row) for row in rows]
