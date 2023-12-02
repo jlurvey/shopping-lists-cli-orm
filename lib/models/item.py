@@ -132,4 +132,15 @@ class Store:
             cls.all[item.id] = item
         return item
     
+    @classmethod
+    def get_all(cls):
+        """Return a list containing one Item object per table row"""
+        sql = """
+            SELECT *
+            FROM items
+        """
+        rows = CURSOR.execute(sql).fetchall()
+
+        return [cls.instance_from_db(row) for row in rows]
+    
     
