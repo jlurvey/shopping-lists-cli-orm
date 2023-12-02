@@ -25,9 +25,7 @@ class Store:
         if isinstance(name, str) and len(name):
             self._name = name
         else:
-            raise ValueError(
-                "Name must be non-empty string"
-            )
+            raise ValueError("Name must be non-empty string")
         
     @property
     def need(self):
@@ -38,9 +36,7 @@ class Store:
         if isinstance(need, bool):
             self._need = need
         else:
-            raise ValueError(
-                "Need must be boolean value"
-            )
+            raise ValueError("Need must be boolean value")
         
     @property
     def store_id(self):
@@ -51,7 +47,17 @@ class Store:
         if isinstance(store_id, int) and Store.find_by_id(store_id):
             self._store_id = store_id
         else:
-            raise ValueError(
-                "store_id must reference a store in the database")
+            raise ValueError("store_id must reference a store in the database")
         
-    
+    @classmethod
+    def create_method(cls):
+        sql = """
+            CREATE TABLE IF NOT EXISTS items (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            need BOOLEAN,
+            store_id INTEGER,
+            FOREIGN KEY (store_id) REFERENCES stores(id))
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
