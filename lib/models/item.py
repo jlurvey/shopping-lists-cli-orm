@@ -50,7 +50,8 @@ class Store:
             raise ValueError("store_id must reference a store in the database")
         
     @classmethod
-    def create_method(cls):
+    def create_table(cls):
+        """Create a new table to persist the attributes of Item instances"""
         sql = """
             CREATE TABLE IF NOT EXISTS items (
             id INTEGER PRIMARY KEY,
@@ -61,3 +62,14 @@ class Store:
         """
         CURSOR.execute(sql)
         CONN.commit()
+
+    @classmethod
+    def drop_table(cls):
+        """Drop the table that persists Item instances"""
+        sql = """
+            DROP TABLE IF EXISTS items
+        """
+        CURSOR.execture(sql)
+        CONN.commit()
+
+    
