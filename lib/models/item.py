@@ -86,3 +86,17 @@ class Store:
 
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
+
+    def update(self):
+        """Update the table row corresponding to the current Item instance."""
+        sql = """
+            UPDATE items
+            SET name = ?, need = ?, store_id = ?
+            WHERE id = ?
+        """
+
+        CURSOR.execute(sql, (self.name, self.need, self,store_id))
+        CONN.commit()
+
+    
+
