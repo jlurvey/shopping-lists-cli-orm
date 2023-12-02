@@ -1,5 +1,5 @@
-# lib/models/stores.py
-from models.__init__ import CURSOR, CONN
+# lib/models/store.py
+from __init__ import CURSOR, CONN
 
 
 class Store:
