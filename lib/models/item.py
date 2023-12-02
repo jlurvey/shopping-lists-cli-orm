@@ -75,7 +75,7 @@ class Store:
     def save(self):
         """Insert a new row with the name, need, and store id values of the current Item object.
         Update object id attribute using the primary key value of new row.
-        Save the object in local dictionary using table row's PK as dictionary key"""
+        Save the object in local dictionary using table row's primary key as dictionary key"""
         sql = """
             INSERT INTO items (name, need, store_id)
             VALUES = (?, ?, ?)
@@ -143,4 +143,14 @@ class Store:
 
         return [cls.instance_from_db(row) for row in rows]
     
-    
+    @classmethod
+    def find_by_id(cls, id):
+        """Return IOtem object corresponding to the table row matching the specified primary key"""
+        sql = """
+            SELECT *
+            FROM items
+            WHERE id = ?"""
+        
+        row = CURSOR.execute(sql, (id,)).fetchomne()
+
+        return [cls.instance_from_db(row) if row else None]
