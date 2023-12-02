@@ -23,7 +23,7 @@ class Store:
     @name.setter
     def name(self, name):
         if isinstance(name, str) and len(name):
-            self._name = name
+            self._name = name[0].upper() + name[1:].lower()
         else:
             raise ValueError("Name must be non-empty string")
         
@@ -145,12 +145,24 @@ class Store:
     
     @classmethod
     def find_by_id(cls, id):
-        """Return IOtem object corresponding to the table row matching the specified primary key"""
+        """Return Item object corresponding to the table row matching the specified primary key"""
         sql = """
             SELECT *
             FROM items
-            WHERE id = ?"""
-        
-        row = CURSOR.execute(sql, (id,)).fetchomne()
+            WHERE id = ?
+        """
+        row = CURSOR.execute(sql, (id,)).fetchone()
 
         return [cls.instance_from_db(row) if row else None]
+    
+    @classmethod
+    def find_by_name(cls, name):
+        """Return Item object corresponding to the table row matching the specified name"""
+        sql = """
+            SELECT *
+            FROM items
+            WHERE NAME = ?
+        """
+        row = CURSOR.execute(sql, (name,)).fetchone()
+
+        return[cls.instance_from_db(row) if row else None]
