@@ -18,7 +18,7 @@ class Store:
     
     @property
     def name(self):
-        return self.name
+        return self._name
     
     @name.setter
     def name(self, name):
@@ -29,4 +29,15 @@ class Store:
                 "Name must be non-empty string"
             )
         
-    
+    @property
+    def need(self):
+        return self._need
+
+    @need.setter
+    def need(self, need):
+        if isinstance(need, bool):
+            self._need = need
+        else:
+            raise ValueError(
+                "Need must be boolean value"
+            )
