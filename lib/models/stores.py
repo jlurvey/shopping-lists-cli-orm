@@ -7,7 +7,15 @@ class Store:
     # Dictionary of objects saved to the database.
     all = {}
 
-    def __init__(self, name, category, id=None):
+    # Class constructor method (dunder method)
+    def __init__(self, name, type, id=None):
         self.id = id
         self.name = name
-        self.category = category
+        self.type = type
+    
+    # String representation method (dunder method)
+    def __repr__(self):
+        return f"<Store {self.id}: {self.name}, {type}>"
+    
+    
+
