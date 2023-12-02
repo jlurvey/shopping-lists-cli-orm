@@ -88,15 +88,25 @@ class Store:
         type(self).all[self.id] = self
 
     def update(self):
-        """Update the table row corresponding to the current Item instance."""
+        """Update the table row corresponding to the current Item object."""
         sql = """
             UPDATE items
             SET name = ?, need = ?, store_id = ?
             WHERE id = ?
         """
 
-        CURSOR.execute(sql, (self.name, self.need, self.store_id))
+        CURSOR.execute(sql, (self.name, self.need, self.store_id, self.id))
         CONN.commit()
 
-    
+    def delete(self):
+        """Delete the table row corresponding to the current Item object"""
+        sql = """
+            DELETE FROM items
+            WHERE id = ?
+        """
 
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+        del type(self).all[self.id]
+        self.id = None
