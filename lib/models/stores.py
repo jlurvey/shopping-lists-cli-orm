@@ -64,4 +64,16 @@ class Store:
             DROP TABLE IF EXISTS stores;
         """
         CURSOR.execute(sql)
+        CONN.commit()
+
+    def save(self):
+        """Insert a new row with the name and category values of the current Store instance.
+        Update object id attribute using the primary key value of new row.
+        Save the object in local dictionary using table row's PK as dictionary key"""
+        sql = """
+            INSERT INTO departments (name, category)
+            VALUES (?, ?)
+        """
+
+        CURSOR.execute(sql, (self.name, self.category))
         CONN.commit()        
