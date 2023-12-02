@@ -8,16 +8,16 @@ class Store:
     all = {}
 
     # Class constructor method (dunder method)
-    def __init__(self, name, type, id=None):
+    def __init__(self, name, category, id=None):
         self.id = id
         self.name = name
-        self.type = type
+        self.category = category
     
     # String representation method (dunder method)
     def __repr__(self):
-        return f"<Store {self.id}: {self.name}, {type}>"
+        return f"<Store {self.id}: {self.name}, {self.category}>"
     
-    # Name property decorator
+    # Name property 
     @property
     def name(self):
         return self._name
@@ -30,3 +30,19 @@ class Store:
             raise ValueError(
                 "Name must be a non-empty string"
             )
+        
+    # Category property
+    @property
+    def category(self):
+        return self._category
+    
+    @category.setter
+    def category(self, category):
+        if isinstance(category, str) and len(category):
+            self._category = category[0] + category[1:]
+        else:
+            raise ValueError(
+                "Category must be a non-empty string"
+            )
+        
+    
