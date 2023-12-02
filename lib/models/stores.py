@@ -86,4 +86,17 @@ class Store:
         """Initialize a new Store instance and save the object to the database"""
         store = cls(name, category)
         store.save()
-        return store                
+        return store
+
+    def update(self):
+        """Update the table row corresponding to the current Store instance."""
+        sql = """
+            UPDATE stores
+            SET name = ?, category = ?
+            WHERE id = /
+        """
+
+        CURSOR.execute(sql, (self.name, self.category, self.id))
+        CONN.commit()
+        
+                            
