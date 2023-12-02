@@ -41,3 +41,17 @@ class Store:
             raise ValueError(
                 "Need must be boolean value"
             )
+        
+    @property
+    def store_id(self):
+        return self._store_id
+    
+    @store_id.setter
+    def store_id(self, store_id):
+        if isinstance(store_id, int) and Store.find_by_id(store_id):
+            self._store_id = store_id
+        else:
+            raise ValueError(
+                "store_id must reference a store in the database")
+        
+    
