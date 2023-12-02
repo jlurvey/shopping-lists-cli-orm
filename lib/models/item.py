@@ -95,7 +95,7 @@ class Store:
             WHERE id = ?
         """
 
-        CURSOR.execute(sql, (self.name, self.need, self,store_id))
+        CURSOR.execute(sql, (self.name, self.need, self.store_id))
         CONN.commit()
 
     
