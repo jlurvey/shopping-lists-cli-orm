@@ -143,4 +143,17 @@ class Store:
         rows = CURSOR.execute(sql).fetchall()
 
         return [cls.instance_from_db(row) for row in rows]
-    
+
+    @classmethod
+    def find_by_id(cls, id):
+        """Return a store object corresponding to table row matching id"""
+        sql = """
+            SELECT *
+            FROM stores
+            WHERE id =?
+        """
+
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+  
+     
