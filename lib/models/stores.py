@@ -98,5 +98,19 @@ class Store:
 
         CURSOR.execute(sql, (self.name, self.category, self.id))
         CONN.commit()
-        
-                            
+
+    def delete(self):
+        """Delete the table row corresponding to the current Store instance,
+        delete the dicitonary entry and reassiogn id attribute"""
+
+        sql = """
+            DELETE FROM stores
+            WHERE id = ?
+        """
+
+        CURSOR.execute(sql, (self.id))
+        CONN.commit()
+
+        # Delete dicitionary and set id to none
+        del type(self).all[self.id]
+        self.id = None                            
