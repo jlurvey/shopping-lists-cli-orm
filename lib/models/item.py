@@ -72,4 +72,17 @@ class Store:
         CURSOR.execture(sql)
         CONN.commit()
 
-    
+    def save(self):
+        """Insert a new row with the name, need, and store id values of the current Item object.
+        Update object id attribute using the primary key value of new row.
+        Save the object in local dictionary using table row's PK as dictionary key"""
+        sql = """
+            INSERT INTO items (name, need, store_id)
+            VALUES = (?, ?, ?)
+        """
+
+        CURSOR.execute(sql, (self.name, self.need, self.store_id))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
