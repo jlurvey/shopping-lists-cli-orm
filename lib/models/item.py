@@ -12,3 +12,6 @@ class Store:
         self.name = name
         self.need = need
         self.store_id = store_id
+
+    def __repr__(self):
+        return f'Item {self.id}: {self.name}, {self.need}, {self.store_id}'
