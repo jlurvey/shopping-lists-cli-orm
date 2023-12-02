@@ -118,4 +118,18 @@ class Store:
         item.save()
         return item
     
+    @classmethod
+    def instance_from_db(cls, row):
+        """Return an Item object having the attribute values from the table row"""
+        item = cls.all.get(row[0])
+        if item:
+            item.name = row[1]
+            item.need = row[2]
+            item.store_id = row[3]
+        else:
+            item = cls(row[1], row[2], row[3])
+            item.id = row[0]
+            cls.all[item.id] = item
+        return item
+    
     
