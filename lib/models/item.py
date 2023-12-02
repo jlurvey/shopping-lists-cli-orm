@@ -110,3 +110,12 @@ class Store:
 
         del type(self).all[self.id]
         self.id = None
+
+    @classmethod
+    def create(cls, name, need, store_id):
+        """Initialize a new Item instance and save the object to the database"""
+        item = cls(name, need, store_id)
+        item.save()
+        return item
+    
+    
