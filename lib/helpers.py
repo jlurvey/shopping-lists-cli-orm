@@ -2,3 +2,17 @@
 from models.store import Store
 from models.item import Item
 
+
+def exit_program():
+    print("Goodbye!")
+    exit()
+
+
+def create_store():
+    name = input("Enter the store's name: ")
+    category = input("Enter the store's category: ")
+    try:
+        store = Store.create(name, category)
+        print(f'Success: {store}')
+    except Exception as exc:
+        print("Error creating store: ", exc)
