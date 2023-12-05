@@ -33,3 +33,11 @@ def list_stores():
         print(store)
 
 
+def list_stores_by_category():
+    pass
+
+
+def find_store_by_name():
+    name = input("Enter the store's name: ")
+    store = Store.find_by_name(name)
+    print(store) if store else print(f'Store {name} not found')
