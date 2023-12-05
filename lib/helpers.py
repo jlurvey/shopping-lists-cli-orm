@@ -16,3 +16,14 @@ def create_store():
         print(f'Success: {store}')
     except Exception as exc:
         print("Error creating store: ", exc)
+
+
+def delete_store():
+    id_ = input("Enter the store's id: ")
+    if store := Store.find_by_id(id_):
+        store.delete()
+        print(f'Store {id_} deleted')
+    else:
+        print(f'Store {id_} not found')
+        
+
