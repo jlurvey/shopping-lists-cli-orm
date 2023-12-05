@@ -65,3 +65,17 @@ def update_store():
         print(f'Store {id_} not found')
 
 
+def create_item():
+    name = input("Enter the item's name: ")
+    need = input("Enter the item's need status: ")
+    store_id = input("Enter the item's store id: ")
+    try:
+        item = Item.create(name, need, store_id)
+        print(f'Success: {item}')
+    except Exception as exc:
+        print('Error creating item: ', exc)
+
+
+
+
+
