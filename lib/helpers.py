@@ -27,3 +27,9 @@ def delete_store():
         print(f'Store {id_} not found')
         
 
+def list_stores():
+    stores = Store.get_all()
+    for store in stores:
+        print(store)
+
+
