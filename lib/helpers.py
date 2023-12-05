@@ -48,3 +48,20 @@ def find_store_by_id():
     store = Store.find_by_id(id_)
     print(store) if store else print(f'Store {id_} not found')
 
+
+def update_store():
+    id_ = input("Enter the store's id: ")
+    if store := Store.find_by_id(id_):
+        try:
+            name = input("Enter the store's new name: ")
+            store.name = name
+            category = input("Enter the store's new category: ")
+            store.category = category
+            store.update()
+            print(f'Succes: {store}')
+        except Exception as exc:
+            print("Error updating store: ", exc)
+    else:
+        print(f'Store {id_} not found')
+
+
