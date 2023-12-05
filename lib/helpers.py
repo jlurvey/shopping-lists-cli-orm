@@ -1,9 +1,4 @@
 # lib/helpers.py
+from models.store import Store
+from models.item import Item
 
-def helper_1():
-    print("Performing useful function#1.")
-
-
-def exit_program():
-    print("Goodbye!")
-    exit()
