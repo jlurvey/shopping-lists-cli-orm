@@ -41,3 +41,10 @@ def find_store_by_name():
     name = input("Enter the store's name: ")
     store = Store.find_by_name(name)
     print(store) if store else print(f'Store {name} not found')
+
+
+def find_store_by_id():
+    id_ = input("Enter the store's id: ")
+    store = Store.find_by_id(id_)
+    print(store) if store else print(f'Store {id_} not found')
+
