@@ -71,7 +71,7 @@ class Store:
         Update object id attribute using the primary key value of new row.
         Save the object in local dictionary using table row's PK as dictionary key"""
         sql = """
-            INSERT INTO departments (name, category)
+            INSERT INTO stores (name, category)
             VALUES (?, ?)
         """
 

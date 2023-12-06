@@ -121,7 +121,7 @@ def find_item_by_id():
 
 def update_item():
     id_ = input("Enter the item's id: ")
-    if item := Item.find_by_id(id_)
+    if item := Item.find_by_id(id_):
         try:
             name = input("Enter the item's new name: ")
             item.name = name
