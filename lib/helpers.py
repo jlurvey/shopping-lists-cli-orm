@@ -75,7 +75,10 @@ def create_item():
     except Exception as exc:
         print('Error creating item: ', exc)
 
-
-
-
-
+def delete_item():
+    id_ = input("Enter the item's id: ")
+    if item := Item.find_by_id(id_):
+        item.delete()
+        print(f'Item {id_} deleted')
+    else:
+        print(f'Item {id_} not found')        
