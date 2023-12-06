@@ -100,3 +100,7 @@ def find_item_by_name():
     print(item) if item else print(f'Item {name} not found')
 
 
+def find_item_by_id():
+    id_ = input("Enter the item's id: ")
+    item = Item.find_by_id(id_)
+    print(item) if item else print(f'Item {id_} not found')
