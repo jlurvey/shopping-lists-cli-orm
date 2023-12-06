@@ -179,3 +179,15 @@ class Store:
 
         rows =CURSOR.fetchall()
         return [Item.instance_from_db(row) for row in rows]
+    
+    @classmethod
+    def find_by_category(cls, category):
+        """Return Store objects corresponding to table rows matching the specified category"""
+        sql = """
+            SELECT *
+            FROM stores
+            WHERE category = ?
+        """
+
+        rows = CURSOR.execute(sql, (category,)).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
