@@ -90,3 +90,13 @@ def list_items():
         print(item)
 
 
+def list_items_by_store():
+    pass
+
+
+def find_item_by_name():
+    name = input("Enter the store's name: ")
+    item = Item.find_by_name(name)
+    print(item) if item else print(f'Item {name} not found')
+
+
