@@ -95,7 +95,7 @@ def list_items_by_store():
 
 
 def find_item_by_name():
-    name = input("Enter the store's name: ")
+    name = input("Enter the item's name: ")
     item = Item.find_by_name(name)
     print(item) if item else print(f'Item {name} not found')
 
@@ -104,3 +104,22 @@ def find_item_by_id():
     id_ = input("Enter the item's id: ")
     item = Item.find_by_id(id_)
     print(item) if item else print(f'Item {id_} not found')
+
+
+def update_item():
+    id_ = input("Enter the item's id: ")
+    if item := Item.find_by_id(id_)
+        try:
+            name = input("Enter the item's new name: ")
+            item.name = name
+            need = input("Enter the item's need status: ")
+            item.need = need
+            store_id = input("Enter the item's store id: ")
+            item.store_id = store_id
+
+            item.update()
+            print(f'Success: {item}')
+        except Exception as exc:
+            print('Error updating item: ', exc)
+    else:
+        print(f'Item {id_} not found')
