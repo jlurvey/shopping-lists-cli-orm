@@ -81,4 +81,12 @@ def delete_item():
         item.delete()
         print(f'Item {id_} deleted')
     else:
-        print(f'Item {id_} not found')        
+        print(f'Item {id_} not found')
+
+
+def list_items():
+    items = Item.get_all()
+    for item in items:
+        print(item)
+
+
