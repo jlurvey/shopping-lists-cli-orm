@@ -33,6 +33,10 @@ def list_stores():
         print(store)
 
 
+
+
+
+
 def find_store_by_name():
     name = input("Enter the store's name: ")
     store = Store.find_by_name(name)
@@ -87,7 +91,7 @@ def list_items():
 
 
 def list_items_by_store():
-    store_id = int(input("Enter the item's store_id: "))
+    store_id = int(input("Enter the store_id: "))
     store = Store.find_by_id(store_id)
     if store:
         items = store.items()
