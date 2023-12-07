@@ -23,7 +23,7 @@ class Item:
     @name.setter
     def name(self, name):
         if isinstance(name, str) and len(name):
-            self._name = name[0].upper() + name[1:].lower()
+            self._name = name.lower()
         else:
             raise ValueError("Name must be non-empty string")
         
@@ -69,7 +69,7 @@ class Item:
         sql = """
             DROP TABLE IF EXISTS items
         """
-        CURSOR.execture(sql)
+        CURSOR.execute(sql)
         CONN.commit()
 
     def save(self):
@@ -78,7 +78,7 @@ class Item:
         Save the object in local dictionary using table row's primary key as dictionary key"""
         sql = """
             INSERT INTO items (name, need, store_id)
-            VALUES = (?, ?, ?)
+            VALUES (?, ?, ?)
         """
 
         CURSOR.execute(sql, (self.name, self.need, self.store_id))
@@ -124,10 +124,10 @@ class Item:
         item = cls.all.get(row[0])
         if item:
             item.name = row[1]
-            item.need = row[2]
+            item.need = bool(row[2])
             item.store_id = row[3]
         else:
-            item = cls(row[1], row[2], row[3])
+            item = cls(row[1], bool(row[2]), row[3])
             item.id = row[0]
             cls.all[item.id] = item
         return item
@@ -153,7 +153,7 @@ class Item:
         """
         row = CURSOR.execute(sql, (id,)).fetchone()
 
-        return [cls.instance_from_db(row) if row else None]
+        return cls.instance_from_db(row) if row else None
     
     @classmethod
     def find_by_name(cls, name):

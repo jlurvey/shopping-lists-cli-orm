@@ -70,11 +70,19 @@ def update_store():
     else:
         print(f'Store {id_} not found')
 
+def boolean_input(prompt):
+    response = input(prompt).strip().lower()
+    if response in ('y', 'yes', 't', 'true'):
+        return True
+    elif response in ('n','no', 'f', 'false'):
+        return False
+    else:
+        print("Please enter 'y'/'yes'/'t'/'true' for True or 'n'/'no'/'f'/'false' for False")
 
 def create_item():
     name = input("Enter the item's name: ")
-    need = input("Enter the item's need status: ")
-    store_id = input("Enter the item's store id: ")
+    need = bool(boolean_input("Enter the item's need status: "))
+    store_id = int(input("Enter the item's store id: "))
     try:
         item = Item.create(name, need, store_id)
         print(f'Success: {item}')
@@ -125,9 +133,9 @@ def update_item():
         try:
             name = input("Enter the item's new name: ")
             item.name = name
-            need = input("Enter the item's need status: ")
+            need = bool(boolean_input("Enter the item's need status: "))
             item.need = need
-            store_id = input("Enter the item's store id: ")
+            store_id = int(input("Enter the item's store id: "))
             item.store_id = store_id
 
             item.update()

@@ -3,7 +3,7 @@
 
 from models.__init__ import CONN, CURSOR
 from models.store import Store
-from .models.item import Item
+from models.item import Item
 import ipdb
 
 def reset_database():
@@ -12,7 +12,10 @@ def reset_database():
     Item.create_table()
     Store.create_table()
 
+    publix = Store.create("Publix", "grocery")
+    tj = Store.create("TJ", "grocery")
+    ace = Store.create("Ace", "hardware")
 
-ipdb.set_trace()
+# ipdb.set_trace()
 
 reset_database()
