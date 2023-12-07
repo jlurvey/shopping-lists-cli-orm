@@ -64,20 +64,21 @@ def update_store():
             category = input("Enter the store's new category: ")
             store.category = category
             store.update()
-            print(f'Succes: {store}')
+            print(f'Success: {store}')
         except Exception as exc:
             print("Error updating store: ", exc)
     else:
         print(f'Store {id_} not found')
 
 def boolean_input(prompt):
-    response = input(prompt).strip().lower()
-    if response in ('y', 'yes', 't', 'true'):
-        return True
-    elif response in ('n','no', 'f', 'false'):
-        return False
-    else:
-        print("Please enter 'y'/'yes'/'t'/'true' for True or 'n'/'no'/'f'/'false' for False")
+    while True:
+        response = input(prompt).strip().lower()
+        if response in ('y', 'yes', 't', 'true'):
+            return True
+        elif response in ('n','no', 'f', 'false'):
+            return False
+        else:
+            print("Please enter 'y'/'yes'/'t'/'true' for True or 'n'/'no'/'f'/'false' for False")
 
 def create_item():
     name = input("Enter the item's name: ")
