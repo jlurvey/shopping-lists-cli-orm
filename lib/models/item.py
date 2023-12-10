@@ -163,6 +163,6 @@ class Item:
             FROM items
             WHERE NAME = ?
         """
-        row = CURSOR.execute(sql, (name,)).fetchone()
+        row = CURSOR.execute(sql, (name.lower(),)).fetchone()
 
         return[cls.instance_from_db(row) if row else None]

@@ -25,7 +25,7 @@ class Store:
     @name.setter
     def name(self, name):
         if isinstance(name, str) and len(name):
-            self._name = name
+            self._name = name.lower()
         else:
             raise ValueError(
                 "Name must be a non-empty string"
@@ -39,7 +39,7 @@ class Store:
     @category.setter
     def category(self, category):
         if isinstance(category, str) and len(category):
-            self._category = category
+            self._category = category.lower()
         else:
             raise ValueError(
                 "Category must be a non-empty string"
