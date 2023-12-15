@@ -4,7 +4,9 @@ This Python CLI application provides functionality to manage stores and their as
 
 Usage
 
-To run the application, execute lib/cli.py using Python in your terminal or command prompt.
+
+
+To run the application, first execute debug.py to create the database tables, execute lib/cli.py using Python in your terminal or command prompt.
 
 The user interface displays a menu with options numbered from 0 to 14, each representing a specific action. Users can interact with the application by entering the corresponding number for the desired action.
 

@@ -128,10 +128,10 @@ class Store:
         else:
             # not in dictionary, create new instance and add
             store = cls(row[1], row[2])
-            store.id = row [0]
+            store.id = row[0]
             cls.all[store.id] = store
         return store
-    
+
     @classmethod
     def get_all(cls):
         """Return a list containing a Store object per row in the table"""
@@ -167,7 +167,7 @@ class Store:
 
         row = CURSOR.execute(sql, (name.lower(),)).fetchone()
         return cls.instance_from_db(row) if row else None
-    
+
     def items(self):
         """Return list of items associated with current store"""
         from models.item import Item
@@ -177,9 +177,9 @@ class Store:
         """
         CURSOR.execute(sql, (self.id,))
 
-        rows =CURSOR.fetchall()
+        rows = CURSOR.fetchall()
         return [Item.instance_from_db(row) for row in rows]
-    
+
     @classmethod
     def find_by_category(cls, category):
         """Return Store objects corresponding to table rows matching the specified category"""
